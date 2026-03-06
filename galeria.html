@@ -444,8 +444,7 @@
       items = getVisibleItems();
       const idx = items.indexOf(item);
       if (idx === -1) return;
-      const img = item.querySelector('img');
-      if (img && img.complete && img.naturalWidth) openLightbox(idx);
+      openLightbox(idx);
     });
   });
   lightboxClose.addEventListener('click', closeLightbox);
@@ -476,6 +475,33 @@
       showImage(currentIndex, 1);
     }
   });
+
+  // Mobile swipe support in lightbox
+  let touchStartX = 0;
+  let touchStartY = 0;
+  lightbox.addEventListener('touchstart', e => {
+    if (!lightbox.classList.contains('active')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', e => {
+    if (!lightbox.classList.contains('active')) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+
+    // Horizontal swipe only, ignore mostly-vertical gestures
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      items = getVisibleItems();
+      if (dx < 0) {
+        currentIndex = (currentIndex + 1) % items.length;
+        showImage(currentIndex, 1);
+      } else {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showImage(currentIndex, -1);
+      }
+    }
+  }, { passive: true });
 </script>
 </body>
 </html>
