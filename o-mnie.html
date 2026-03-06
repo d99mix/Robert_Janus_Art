@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O mnie — Robert Janus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Serif:ital@0;1&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Jost', 'sans-serif'] },
+          colors: { canvas: '#080808', ink: '#e8e0d4', muted: '#7a7265', gold: '#c9a96e', 'gold-light': '#e8c98a' },
+        },
+      },
+    };
+  </script>
+</head>
+<body>
+
+<nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="font-serif text-ink text-lg font-light tracking-wide">Robert</span>
+      <span class="font-sans text-muted text-[0.6rem] tracking-[0.3em] uppercase font-light -mt-1">Janus</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link">Strona główna</a>
+      <a href="o-mnie.html" class="nav-link active">O mnie</a>
+      <a href="galeria.html" class="nav-link">Galeria</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
+    </div>
+    <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+      <span class="block w-6 h-px bg-muted transition-all" id="h1"></span>
+      <span class="block w-4 h-px bg-muted transition-all ml-auto" id="h2"></span>
+      <span class="block w-6 h-px bg-muted transition-all" id="h3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden border-t border-gold/10">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col gap-6">
+      <a href="index.html" class="nav-link text-base" onclick="closeMobileMenu()">Strona główna</a>
+      <a href="o-mnie.html" class="nav-link text-base" onclick="closeMobileMenu()">O mnie</a>
+      <a href="galeria.html" class="nav-link text-base" onclick="closeMobileMenu()">Galeria</a>
+      <a href="kontakt.html" class="nav-link text-base" onclick="closeMobileMenu()">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<section class="about-page">
+  <div class="about-page__inner">
+    <div class="about-page__image-wrap reveal">
+      <img
+        src="Galeria/o-mnie.jpg"
+        alt="Robert Janus przy pracy"
+        class="about-page__img"
+        onerror="this.src='https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=85'"
+      />
+    </div>
+    <div class="about-page__text reveal">
+      <p class="about-page__label">O mnie</p>
+      <h1 class="about-page__title">Między światłem a cieniem</h1>
+      <p class="about-page__lead">
+        Urodziłem się w Krakowie, gdzie kamienice szepczą historię, a światło o zmierzchu ma barwę starego złota. Przez ponad dwadzieścia lat poszukuję momentów, w których rzeczywistość staje się metaforą.
+      </p>
+      <p class="about-page__body">
+        Moje prace balansują na granicy malarstwa i fotografii — obie dziedziny traktuję jako dwa języki opisujące tę samą ciszę. Tworzę w małych seriach, każda jest osobną podróżą, osobnym oddechem.
+      </p>
+      <p class="about-page__body">
+        Wystawiałem w Warszawie, Berlinie i Lizbonie. Moje obrazy trafiły do prywatnych kolekcji w kilkunastu krajach.
+      </p>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule about-page__rule" />
+<footer class="py-10 border-t border-gold/10 text-center">
+  <p class="font-sans font-light text-muted text-xs tracking-[0.3em] uppercase">
+    © 2024 Robert Janus &nbsp;·&nbsp; Wszelkie prawa zastrzeżone
+  </p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    document.getElementById('h1').style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+    document.getElementById('h2').style.opacity = menuOpen ? '0' : '1';
+    document.getElementById('h3').style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+  });
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    document.getElementById('h1').style.transform = '';
+    document.getElementById('h2').style.opacity = '1';
+    document.getElementById('h3').style.transform = '';
+  }
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeria — Robert Janus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { serif: ['Cormorant Garamond', 'Georgia', 'serif'], sans: ['Jost', 'sans-serif'] },
+          colors: { canvas: '#080808', ink: '#e8e0d4', muted: '#7a7265', gold: '#c9a96e', 'gold-light': '#e8c98a' },
+        },
+      },
+    };
+  </script>
+</head>
+<body>
+
+<nav class="glass-nav fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+    <a href="index.html" class="flex flex-col leading-none">
+      <span class="font-serif text-ink text-lg font-light tracking-wide">Robert</span>
+      <span class="font-sans text-muted text-[0.6rem] tracking-[0.3em] uppercase font-light -mt-1">Janus</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="nav-link">Strona główna</a>
+      <a href="o-mnie.html" class="nav-link">O mnie</a>
+      <a href="galeria.html" class="nav-link active">Galeria</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
+    </div>
+    <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+      <span class="block w-6 h-px bg-muted transition-all" id="h1"></span>
+      <span class="block w-4 h-px bg-muted transition-all ml-auto" id="h2"></span>
+      <span class="block w-6 h-px bg-muted transition-all" id="h3"></span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="md:hidden border-t border-gold/10">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col gap-6">
+      <a href="index.html" class="nav-link text-base" onclick="closeMobileMenu()">Strona główna</a>
+      <a href="o-mnie.html" class="nav-link text-base" onclick="closeMobileMenu()">O mnie</a>
+      <a href="galeria.html" class="nav-link text-base" onclick="closeMobileMenu()">Galeria</a>
+      <a href="kontakt.html" class="nav-link text-base" onclick="closeMobileMenu()">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<section class="pt-28 md:pt-36 pb-24 md:pb-36 px-6 md:px-10 max-w-7xl mx-auto">
+  <div class="reveal text-center mb-12">
+    <p class="font-sans font-light text-gold tracking-[0.4em] text-xs uppercase mb-4">Portfolio</p>
+    <h1 class="font-serif text-4xl md:text-6xl font-light text-ink leading-tight">
+      Galeria prac
+    </h1>
+  </div>
+
+  <!-- Kategorie: w każdym masonry-item ustaw data-category na: krajobraz | portret | martwa-natura | abstrakcja | grafika | architektura | inne -->
+  <div class="reveal gallery-filter" role="tablist">
+    <button type="button" class="gallery-filter-btn active" data-category="wszystkie" aria-pressed="true">Wszystkie</button>
+    <button type="button" class="gallery-filter-btn" data-category="krajobraz">Krajobrazy</button>
+    <button type="button" class="gallery-filter-btn" data-category="portret">Portrety</button>
+    <button type="button" class="gallery-filter-btn" data-category="martwa-natura">Martwa natura</button>
+    <button type="button" class="gallery-filter-btn" data-category="abstrakcja">Abstrakcje</button>
+    <button type="button" class="gallery-filter-btn" data-category="grafika">Grafiki / rysunki</button>
+    <button type="button" class="gallery-filter-btn" data-category="architektura">Architektura / miasto</button>
+    <button type="button" class="gallery-filter-btn" data-category="inne">Inne</button>
+  </div>
+
+  <div class="masonry reveal" id="gallery-masonry">
+    <div class="masonry-item" data-category="krajobraz" data-title="Praca 1">
+      <img src="Galeria/krajobraz/01.jpg" alt="Praca 1" loading="lazy" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 1</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="krajobraz" data-title="Praca 2">
+      <img src="Galeria/krajobraz/02.jpg" alt="Praca 2" loading="lazy" style="height:340px;object-fit:cover;" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 2</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="krajobraz" data-title="Praca 3">
+      <img src="Galeria/krajobraz/03.jpg" alt="Praca 3" loading="lazy" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 3</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="krajobraz" data-title="Praca 4">
+      <img src="Galeria/krajobraz/04.jpg" alt="Praca 4" loading="lazy" style="height:260px;object-fit:cover;" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 4</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="krajobraz" data-title="Praca 5">
+      <img src="Galeria/krajobraz/05.jpg" alt="Praca 5" loading="lazy" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 5</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="portret" data-title="Praca 6">
+      <img src="Galeria/portret/06.jpg" alt="Praca 6" loading="lazy" style="height:380px;object-fit:cover;" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 6</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="portret" data-title="Praca 7">
+      <img src="Galeria/portret/07.jpg" alt="Praca 7" loading="lazy" style="height:220px;object-fit:cover;" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 7</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="portret" data-title="Praca 8">
+      <img src="Galeria/portret/08.jpg" alt="Praca 8" loading="lazy" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 8</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="portret" data-title="Praca 9">
+      <img src="Galeria/portret/09.jpg" alt="Praca 9" loading="lazy" style="height:320px;object-fit:cover;" />
+      <div class="masonry-overlay">
+        <p class="font-serif font-light italic text-ink text-sm">Praca 9</p>
+        <p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p>
+      </div>
+    </div>
+    <div class="masonry-item" data-category="portret" data-title="Praca 10"><img src="Galeria/portret/10.jpg" alt="Praca 10" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 10</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="martwa-natura" data-title="Praca 11"><img src="Galeria/martwa-natura/11.jpg" alt="Praca 11" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 11</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="martwa-natura" data-title="Praca 12"><img src="Galeria/martwa-natura/12.jpg" alt="Praca 12" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 12</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="martwa-natura" data-title="Praca 13"><img src="Galeria/martwa-natura/13.jpg" alt="Praca 13" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 13</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="martwa-natura" data-title="Praca 14"><img src="Galeria/martwa-natura/14.jpg" alt="Praca 14" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 14</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="martwa-natura" data-title="Praca 15"><img src="Galeria/martwa-natura/15.jpg" alt="Praca 15" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 15</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="abstrakcja" data-title="Praca 16"><img src="Galeria/abstrakcja/16.jpg" alt="Praca 16" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 16</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="abstrakcja" data-title="Praca 17"><img src="Galeria/abstrakcja/17.jpg" alt="Praca 17" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 17</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="abstrakcja" data-title="Praca 18"><img src="Galeria/abstrakcja/18.jpg" alt="Praca 18" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 18</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="abstrakcja" data-title="Praca 19"><img src="Galeria/abstrakcja/19.jpg" alt="Praca 19" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 19</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="abstrakcja" data-title="Praca 20"><img src="Galeria/abstrakcja/20.jpg" alt="Praca 20" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 20</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="grafika" data-title="Praca 21"><img src="Galeria/grafika/21.jpg" alt="Praca 21" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 21</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="grafika" data-title="Praca 22"><img src="Galeria/grafika/22.jpg" alt="Praca 22" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 22</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="grafika" data-title="Praca 23"><img src="Galeria/grafika/23.jpg" alt="Praca 23" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 23</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="grafika" data-title="Praca 24"><img src="Galeria/grafika/24.jpg" alt="Praca 24" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 24</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="grafika" data-title="Praca 25"><img src="Galeria/grafika/25.jpg" alt="Praca 25" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 25</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="architektura" data-title="Praca 26"><img src="Galeria/architektura/26.jpg" alt="Praca 26" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 26</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="architektura" data-title="Praca 27"><img src="Galeria/architektura/27.jpg" alt="Praca 27" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 27</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="architektura" data-title="Praca 28"><img src="Galeria/architektura/28.jpg" alt="Praca 28" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 28</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="inne" data-title="Praca 29"><img src="Galeria/inne/29.jpg" alt="Praca 29" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 29</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="inne" data-title="Praca 30"><img src="Galeria/inne/30.jpg" alt="Praca 30" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 30</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="inne" data-title="Praca 31"><img src="Galeria/inne/31.jpg" alt="Praca 31" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 31</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+    <div class="masonry-item" data-category="inne" data-title="Praca 32"><img src="Galeria/inne/32.jpg" alt="Praca 32" loading="lazy" /><div class="masonry-overlay"><p class="font-serif font-light italic text-ink text-sm">Praca 32</p><p class="font-sans font-light text-muted text-xs tracking-widest uppercase mt-1">Galeria</p></div></div>
+  </div>
+</section>
+
+<hr class="gold-rule max-w-2xl mx-auto" />
+<footer class="py-10 border-t border-gold/10 text-center">
+  <p class="font-sans font-light text-muted text-xs tracking-[0.3em] uppercase">
+    © 2024 Robert Janus &nbsp;·&nbsp; Wszelkie prawa zastrzeżone
+  </p>
+</footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+  <button id="lightbox-close" aria-label="Zamknij">×</button>
+  <button id="lightbox-prev" class="lightbox-nav-btn" aria-label="Poprzednie">&#8592;</button>
+  <button id="lightbox-next" class="lightbox-nav-btn" aria-label="Następne">&#8594;</button>
+  <img id="lightbox-img" src="" alt="" />
+  <div style="position:absolute;bottom:32px;left:0;right:0;text-align:center;">
+    <div id="lightbox-title"></div>
+    <div id="lightbox-counter"></div>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  let menuOpen = false;
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    document.getElementById('h1').style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+    document.getElementById('h2').style.opacity = menuOpen ? '0' : '1';
+    document.getElementById('h3').style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+  });
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    document.getElementById('h1').style.transform = '';
+    document.getElementById('h2').style.opacity = '1';
+    document.getElementById('h3').style.transform = '';
+  }
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  const allItems = Array.from(document.querySelectorAll('.masonry-item'));
+  let currentCategory = 'wszystkie';
+  let currentIndex = 0;
+
+  function getVisibleItems() {
+    if (currentCategory === 'wszystkie') return allItems;
+    return allItems.filter(el => el.dataset.category === currentCategory);
+  }
+
+  function filterGallery(category) {
+    currentCategory = category;
+    document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.category === category);
+      btn.setAttribute('aria-pressed', btn.dataset.category === category);
+    });
+    allItems.forEach(item => {
+      const show = category === 'wszystkie' || item.dataset.category === category;
+      item.classList.toggle('gallery-hidden', !show);
+    });
+  }
+
+  document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => filterGallery(btn.dataset.category));
+  });
+
+  let items = allItems;
+
+  function showImage(index, direction) {
+    direction = direction || 0;
+    items = getVisibleItems();
+    const item = items[index];
+    const img = item.querySelector('img');
+    if (!img || !img.src) return;
+    const title = item.dataset.title || '';
+    const slideOut = direction > 0 ? '-60px' : '60px';
+    const slideIn = direction > 0 ? '60px' : '-60px';
+    if (direction !== 0) {
+      lightboxImg.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      lightboxImg.style.opacity = '0';
+      lightboxImg.style.transform = `scale(0.96) translateX(${slideOut})`;
+      setTimeout(() => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxTitle.textContent = title;
+        lightboxCounter.textContent = `${index + 1} / ${items.length}`;
+        lightboxImg.style.transform = `scale(0.96) translateX(${slideIn})`;
+        requestAnimationFrame(() => {
+          lightboxImg.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+          lightboxImg.style.opacity = '1';
+          lightboxImg.style.transform = 'scale(1) translateX(0)';
+        });
+      }, 260);
+    } else {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxTitle.textContent = title;
+      lightboxCounter.textContent = `${index + 1} / ${items.length}`;
+    }
+  }
+  function openLightbox(index) {
+    items = getVisibleItems();
+    currentIndex = index;
+    lightboxImg.style.opacity = '1';
+    lightboxImg.style.transform = 'scale(1) translateX(0)';
+    showImage(currentIndex);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { lightboxImg.src = ''; }, 400);
+  }
+  allItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      items = getVisibleItems();
+      const idx = items.indexOf(item);
+      if (idx === -1) return;
+      const img = item.querySelector('img');
+      if (img && img.complete && img.naturalWidth) openLightbox(idx);
+    });
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    items = getVisibleItems();
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    showImage(currentIndex, -1);
+  });
+  lightboxNext.addEventListener('click', e => {
+    e.stopPropagation();
+    items = getVisibleItems();
+    currentIndex = (currentIndex + 1) % items.length;
+    showImage(currentIndex, 1);
+  });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') {
+      items = getVisibleItems();
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      showImage(currentIndex, -1);
+    }
+    if (e.key === 'ArrowRight') {
+      items = getVisibleItems();
+      currentIndex = (currentIndex + 1) % items.length;
+      showImage(currentIndex, 1);
+    }
+  });
+</script>
+</body>
+</html>
