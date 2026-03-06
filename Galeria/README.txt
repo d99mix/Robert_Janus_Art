@@ -8,7 +8,6 @@ Kategorie i foldery:
   Galeria/krajobraz/
   Galeria/portret/
   Galeria/martwa-natura/
-  Galeria/abstrakcja/
   Galeria/grafika/
   Galeria/architektura/
   Galeria/inne/
